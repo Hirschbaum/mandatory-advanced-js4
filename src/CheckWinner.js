@@ -1,6 +1,7 @@
 const checkWinner = (board) => {
+
     /*--------------------------------- in rows -----------------------------*/
-    for (let x = 0; x <= 35; x += 7) {
+    for (let x = 0; x <= 38; x += 1) {
         for (let y = x; y < x + 3; y++) {
             if (board[y] !== 'white') {
                 if (
@@ -61,6 +62,14 @@ const checkWinner = (board) => {
             }
         }
     }
+
+    /*----------------------check if it is draw --------------------------*/
+    
+    if (!board.includes('white')) {
+            console.log("draw");
+            return "... NOONE";
+    }
+    
 
     return null;
 }

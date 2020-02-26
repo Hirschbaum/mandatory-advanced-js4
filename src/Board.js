@@ -2,8 +2,8 @@ import React, { useReducer } from 'react';
 import ReactDOM from 'react-dom';
 import Grid from './Grid';
 import checkWinner from './CheckWinner';
+import { useEffect } from 'react';
 
-//console.log(BoardCircles);
 let gameEnds;
 
 function initState() {
@@ -50,34 +50,43 @@ function reducer(state, action) {
             return initState();
         default:
             return state;
-
-
     }
 }
 
-
 export default function Board() {
     const [state, dispatch] = useReducer(reducer, null, initState);
+
+    useEffect(() => {
+        closePopup();
+    });
+
+    function closePopup() {
+        gameEnds = null;
+    }
 
     if (state.winner) {
         console.log(state.winner)
         gameEnds = (
             <div className="game-ends" style={{ position: "absolute" }}>
+                <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                </div>
                 <p>GAME OVER</p>
-                <h3>The winner is {state.color === 'teal' ? 'gold' : 'teal'}!</h3>
-                <button onClick={() => dispatch({ type: "new_game"})}>New Game</button>
+                <h3>The winner is {state.winner}!</h3>
+                <button onClick={() => dispatch({ type: "new_game" })}>New Game</button>
             </div>
         )
     }
 
     return (
         <div>
-            <h3>ConnectFour</h3>
+            <h2>
+                <span style={{color: "teal"}}>Connect</span>
+                <span style={{color: "gold", fontWeight: "900", fontSize: "1.2em"}}>4</span>
+            </h2>
             <Grid
                 circles={state.circles}
                 onClick={(i) => dispatch({ type: 'drop_disc', index: i })}
             />
-            {gameEnds}
             {ReactDOM.createPortal(gameEnds, document.body)}
         </div>
     )

@@ -24,13 +24,31 @@
     top: 190px;
     left: 120px;
     width: 310px;
-    height: 150px;
+    height: 160px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 0.3rem;
     padding: 2%;
     text-align: center;
   }
+
+  .game-ends > h3 {
+    margin-top: -10px;
+  }
+
+  .close-button {
+    text-align: right;
+    border-radius: 0.3rem;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    color: #000;
+    padding: 1%;
+  }
+
+  .close-button:hover {
+    cursor: pointer;
+  }
+
 
   button {
     padding: 2.5%;
